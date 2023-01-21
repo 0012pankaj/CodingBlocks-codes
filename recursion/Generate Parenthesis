@@ -1,0 +1,22 @@
+import java.util.*;
+public class Main{
+     public static void gratestparentheses(int n,int open,int close,String ans){
+
+    if(open==n && close==n){
+        System.out.println(ans);
+        return;
+    }
+
+   
+    if(open>close) gratestparentheses(n,open,close+1,ans+")");
+     if(open<n) gratestparentheses(n,open+1,close,ans+"(");
+    }
+  
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+
+        gratestparentheses(n,0,0,"");
+
+    }
+}
