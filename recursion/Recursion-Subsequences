@@ -1,0 +1,35 @@
+Sample Input:
+abcd
+Sample Output:
+ d c cd b bd bc bcd a ad ac acd ab abd abc abcd 
+16
+________________________________________________
+
+
+
+import java.util.*;
+public class Main {
+    public static int printsubseq(String que,String ans){
+        if(que.length()==0){
+            System.out.print(ans+" ");
+            return 1;
+        }
+
+        char ch=que.charAt(0);
+        int a= printsubseq(que.substring(1),ans);
+        int b= printsubseq(que.substring(1),ans+ch);
+
+        return a+b;
+    }
+
+
+    public static void main(String args[]) {
+
+    Scanner sc=new Scanner(System.in);
+    String s=sc.next();
+    int x=printsubseq(s,"");
+     System.out.println();
+     System.out.print(x);
+
+    }
+}
