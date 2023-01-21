@@ -1,0 +1,28 @@
+import java.util.*;
+public class Main {
+
+   public static void helper(int cur,int n)
+    {
+        if(cur > n) return;
+        
+         System.out.print(cur+" ");
+
+        int i=0;
+        if(cur == 0)
+        {
+            i=1;
+        }
+        for(;i<=9;i++)
+        {
+            helper(10*cur+i,n);
+        }
+    }
+
+     
+    public static void main(String args[]) {
+       
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        helper(0, n);
+    }
+}
