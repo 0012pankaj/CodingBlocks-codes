@@ -1,0 +1,20 @@
+import java.util.*;   //use two plate digram to understand easily
+public class Main {
+
+    public static void TOH(int n,String src ,String des,String helper)
+    {   
+        if(n==0){return;}    //base case
+      
+      TOH(n-1,src,helper,des);
+      System.out.println("Moving ring "+n+" from "+src+" to "+des);
+      TOH(n-1,helper,des,src);
+
+    }
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+
+        TOH(n,"A","B","C"); //A-->source B-->destination C-->Helper
+
+    }
+}
