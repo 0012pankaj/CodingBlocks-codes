@@ -1,4 +1,4 @@
-mport java.util.*;
+import java.util.*;
 public class Main { 
     static int i=-1;
     public static void  lastindex(int[] arr,int n,int m)
