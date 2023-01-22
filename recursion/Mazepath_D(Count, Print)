@@ -1,0 +1,33 @@
+import java.util.*;
+public class Main {
+    static int count=0;
+    public static void mazepath(int r,int c,int rc, int cc ,String ans)
+    {  
+         if(rc<0 || cc<0)	return ;
+	
+        if(rc>=r || cc>=c) return;
+
+        if(rc==r-1 && cc==c-1)
+        {  
+            System.out.print(ans+" ");
+            ++count;
+            return;
+
+        }
+
+     mazepath(r,c,rc+1,cc,ans+"V");
+      mazepath(r,c,rc,cc+1,ans+"H");
+     mazepath(r,c,rc+1,cc+1,ans+"D");
+      
+    }
+
+
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int r=sc.nextInt();
+        int c=sc.nextInt();
+        mazepath(r,c,0,0,"");
+        System.out.println();
+        System.out.print(count);
+    }
+}
