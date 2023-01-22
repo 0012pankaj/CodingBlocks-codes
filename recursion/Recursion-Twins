@@ -1,0 +1,26 @@
+import java.util.*;
+public class Main {
+    public static void twins(String s,int count)
+    {   //base case
+        if(s.length()==2){
+            System.out.print(count);
+            return ;}
+
+        char c1=s.charAt(0);
+        char c2=s.charAt(2);
+        if(c1==c2){
+            count++;
+        }
+   
+        twins(s.substring(1),count);
+    }
+
+    //start--->
+    public static void main(String args[]) {
+        //input
+     Scanner sc=new Scanner(System.in);
+     String s=sc.next();
+
+     twins(s,0);
+    }
+}
