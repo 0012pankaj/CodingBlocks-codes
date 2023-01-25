@@ -1,0 +1,43 @@
+Take as input N, a number. N is the size of a snakes and ladder board (without any snakes and ladders). Take as input M, a number. M is the number of faces of the dice.
+
+a. Write a recursive function which returns the count of different ways the board can be traveled using the dice. Print the value returned.
+
+b. Write a recursive function which prints dice-values for all valid paths across the board (void is the return type for function).
+_____________________________________________________________________________________________
+
+import java.util.*;
+public class Main {
+   static int count=0;
+    //_____________________________
+    public static void throwdice(int N,int M,String ans)
+    {
+         if(N==0) {
+             System.out.print(ans+" ");
+             count++;
+             return; }
+
+          if(N<0) return;
+
+          int i=1;
+         for(;i<=M;i++)
+         { 
+             throwdice( N-i,M,ans+i);
+          
+         }
+    }
+   
+      
+    
+ //   ______________________________
+    public static void main(String args[]) {
+     
+        Scanner sc=new Scanner(System.in);
+        int N=sc.nextInt();
+        int M=sc.nextInt();
+
+        throwdice(N,M,"");
+        System.out.println();
+        System.out.print(count);
+     
+    }
+}
