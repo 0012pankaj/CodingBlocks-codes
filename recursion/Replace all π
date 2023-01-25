@@ -1,0 +1,34 @@
+import java.util.*;
+public class Main {
+    public static String callfun(String s)
+    {
+        if(s.length()==0 || s.length()==1) return s;
+
+        if(s.charAt(0)=='p'&& s.charAt(1)=='i') {
+          
+          String pendingstr=callfun(s.substring(2));
+
+          return "3.14"+pendingstr;
+        }
+        else{
+             String pendingstr=callfun(s.substring(1));
+
+          return s.charAt(0)+pendingstr;
+        }
+    }
+   
+   
+   //START---->
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        while(n>0)
+        { 
+            String s=sc.next();
+            String st=callfun(s);
+            System.out.println(st);
+        n--;
+        }
+
+    }
+}
