@@ -1,0 +1,22 @@
+import java.util.*;
+public class Main {
+    public static int callfun(String s,int ans,int l)
+    {
+        if(l==0)
+        return ans;
+
+        char ch=s.charAt(0);
+        String str=s.substring(1);
+        // int num=num*10+(ch-'0');
+
+      return   callfun(str,ans*10+(ch-'0'),l-1);
+    }
+    public static void main(String args[]) {
+        // Your Code Here
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        
+        int x=callfun(str,0,str.length());
+        System.out.print(x);
+    }
+}
