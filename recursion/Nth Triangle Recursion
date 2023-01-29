@@ -1,0 +1,17 @@
+import java.util.*;
+public class Main {
+
+    public static int callsum(int n,int a){
+     if(n==0)
+     return a;
+
+     return callsum(n-1,a+n);
+    }
+    public static void main(String args[]) {
+        // Your Code Here
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int ans=callsum(n,0);
+        System.out.print(ans);
+    }
+}
