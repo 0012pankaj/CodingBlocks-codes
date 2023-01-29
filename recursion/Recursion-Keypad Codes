@@ -1,0 +1,40 @@
+import java.util.*;
+public class Main {
+     static String[] keys={"abc","def","ghi","jkl","mno","pqrs","tuv","wx","yz"};
+     static int count=0;
+     static ArrayList<String> list=new ArrayList<>();
+
+    public static void printnumber(String que,String ans){
+    // base case 
+      if(que.length()==0)
+      {   list.add(ans);
+         
+          return ;
+      }
+        
+        char ch=que.charAt(0);
+        String keypress=keys[ch-'0'-1];
+        for(int i=0;i<keypress.length();i++)
+        {
+            printnumber(que.substring(1),ans+keypress.charAt(i));
+        }
+
+       
+
+    }
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        String s=String.valueOf(n);
+
+        printnumber(s,"");
+        for(int i=0;i<list.size();i++)
+        {
+            System.out.print(list.get(i)+" ");
+            
+        }
+        System.out.println();
+         
+         System.out.println(list.size());
+    }
+}
