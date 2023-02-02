@@ -1,0 +1,53 @@
+Given a string containing of ‘0’, ‘1’ and ‘?’ wildcard characters, generate all binary strings that can be formed by replacing each wildcard character by ‘0’ or ‘1’.
+
+Input Format
+The first line of input contains a single integer T denoting the number of test cases. Then T test cases follow. Each test case consist of two lines. The first line of each test case consists of a string S.
+
+Constraints
+1 ≤ T ≤ 60 1 ≤ length of string S ≤ 30
+
+Output Format
+Print all binary string that can be formed by replacing each wildcard character separated by space.
+
+Sample Input
+1
+1??0?101
+Sample Output
+10000101 10001101 10100101 10101101 11000101 11001101 11100101 11101101
+
+______________________________________________________________________________________________________________________
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int t=sc.nextInt();
+        while(t>0){
+           String s=sc.next();
+            generater(s,"");
+            System.out.println();
+           t--;
+        }
+       
+    }
+   public static void generater(String s,String ans)
+   {
+      if(s.length()==0)
+      {
+       System.out.print(ans+" ");
+       return;
+      }
+         
+       char c=s.charAt(0);
+       if(c == '?'){
+           generater(s.substring(1),ans+"0");
+          generater(s.substring(1),ans+"1");
+
+       }else{
+           generater(s.substring(1),ans+c);
+       }     
+
+   }
+
+}
+//10000101 10001101 10100101 10101101 11000101 11001101 11100101 11101101 
+//10000101 10001101 10100101 10101101 11000101 11001101 11100101 11101101
