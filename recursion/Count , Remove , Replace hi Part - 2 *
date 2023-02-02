@@ -1,0 +1,81 @@
+Take as input str, a string.
+
+a.) Write a recursive function which counts the number of times ‘hi’ appears in the string – but skip all such ‘hi’ which are followed by ‘t’ to form ‘hit’. Print the value returned.
+
+b.) Write a recursive function which removes all ‘hi’ in the string – but skip all such ‘hi’ which are followed by ‘t’ to form ‘hit’. Print the value returned.
+
+c.) Write a recursive function which replaces all ‘hi’ in the string with ‘bye’ – but skip all such ‘hi’ which are followed by ‘t’ to form ‘hit’. Print the value returned.
+
+Input Format
+Enter the String
+
+Constraints
+None
+
+Output Format
+Display the total no.of ''hi'' (''hi'' should not be followed by a 't'), string in which all ''hi'' are removes(''hi'' should not be followed by a 't'), string in which all ''hi'' are replace by ''bye''(''hi'' should not be followed by a 't')
+___________________________________________________
+Sample Input:
+abchihitfhi
+
+Sample Output:
+2
+abchitf
+abcbyehitfbye
+____________________________________________-
+
+
+import java.util.*;
+public class Main {
+    static int count=0;
+    public static void printkr(String s1,String s2){
+        
+    }
+
+    public static void answer(String s, String s1,String s2)
+    {  
+        if(s.length() <= 2) 
+          {
+            if(s.length()==2 && s.charAt(0)=='h'&& s.charAt(1)=='i')
+            {
+                System.out.println(++count);
+                System.out.println(s1);
+                 System.out.println(s2+"bye");
+                return;
+               }
+               else{
+                 System.out.println(count);
+                  System.out.println(s1+s);
+                 System.out.println(s2+s);
+                return;
+             }
+          }
+        else{
+         
+        char c1=s.charAt(0);
+        char c2=s.charAt(1);
+        char c3=s.charAt(2);
+
+        if(c1=='h' && c2=='i' && c3 != 't')
+        {   count++;
+            answer(s.substring(2),s1,s2+"bye");
+        }
+        else{
+            answer(s.substring(1),s1+c1,s2+c1);
+        }
+        }
+  } 
+        
+
+           
+       
+    //---------------------------
+ 
+    public static void main(String args[]) {
+         Scanner sc=new Scanner(System.in);
+         String s=sc.next();
+        
+        answer(s,"","");
+
+    }
+}
