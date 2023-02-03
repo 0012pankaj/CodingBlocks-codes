@@ -1,0 +1,40 @@
+import java.util.*;
+public class Main {
+    static int count=0;
+    public static void  funcall(int[] arr,int tar,String ans,int i,int sum)
+    {    if(i==arr.length )
+          {   
+              if(sum==tar){
+                 ++count;
+                 System.out.print(ans+" ");
+              }
+             
+              return;
+          }
+
+        funcall(arr,tar,ans+arr[i]+" ",i+1,sum+arr[i]);
+        funcall(arr,tar,ans,i+1,sum);
+      
+    }
+    
+
+    public static void main(String args[]) {
+      
+      //Input
+      Scanner sc=new Scanner(System.in);
+      int n=sc.nextInt();
+      int arr[]=new int[n];
+
+       for(int i=0;i<n;i++)
+       { 
+           arr[i]=sc.nextInt();
+       }
+      
+      int t=sc.nextInt();
+      
+      funcall(arr,t,"",0,0);
+   System.out.println();
+      System.out.print(count);
+     
+    }
+}
