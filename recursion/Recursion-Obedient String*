@@ -1,0 +1,36 @@
+import java.util.*;
+public class Main {
+    public static void main(String args[]) {
+      Scanner sc =new Scanner(System.in);
+      String s=sc.next();
+
+      if(s.charAt(0)!='a'){
+           System.out.print(false);
+           System.exit(0);
+      }
+   
+      int n=s.length();
+      boolean ans=answer(s,0);
+
+     System.out.print(ans);
+    }
+    //-------------
+    public static boolean answer(String s,int i)
+    {   //base case
+        if(i>=s.length()) return true;
+
+        if(s.charAt(i)!='a' && s.charAt(i)!='b') return false;
+
+        if(s.charAt(i)=='b'){
+            if(i<s.length()-1 && s.charAt(i+1)=='b')
+            {
+                return answer(s,i+2);
+            }
+            else{
+                return false;
+            }
+        }
+       
+         return  answer(s,i+1);
+    }
+}
