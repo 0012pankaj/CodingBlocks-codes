@@ -1,0 +1,63 @@
+import java.util.*;
+public class Main {
+    static int count=0; 
+    public static void main(String args[]) {
+    Scanner sc=new Scanner(System.in);
+    int n=sc.nextInt();
+    boolean[][] board=new boolean[n][n];
+    
+    nKnight(board,0,0,"",n);
+
+    System.out.println("\n"+count);
+
+
+    }
+    //-------------
+    public static void nKnight(boolean[][] board,int row,int col,String ans,int tn)
+    {   //base case
+       if(tn==0){
+           System.out.print(ans+" ");
+           count++;
+           return;
+       }
+       
+       if(col== board.length)
+       { row++;
+         col=0;
+       }
+
+       if(row==board.length){
+           return;
+       }
+
+
+        if(ispossible(board,row,col))//yes
+        {
+             board[row][col]=true;
+             nKnight(board,row,col+1,ans+"{"+row+"-"+col+"} ",tn-1);
+              board[row][col]=false;//bactarak
+
+        }
+
+        //no
+         nKnight(board,row,col+1,ans,tn);
+    }
+    //-------------
+
+    public static boolean ispossible(boolean[][] board,int row, int col)
+    {
+       int r[]={-1,-1,-2,-2};
+       int c[]={2,-2,1,-1};
+  
+        for(int i=0;i<c.length;i++)
+        {  
+            int a=row+r[i];
+            int b=col+c[i];
+            if(a >= 0 && b >= 0 && b < board.length && board[a][b] == true){
+                return false;
+            }
+        }
+
+        return true;
+    }
+}
