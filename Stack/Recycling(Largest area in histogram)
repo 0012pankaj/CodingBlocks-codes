@@ -1,0 +1,68 @@
+import java.util.*;
+public class Main {
+    public static void main (String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int arr[]=new int[n];
+        for(int i=0;i<n;i++){
+            arr[i]=sc.nextInt();
+        }
+
+        System.out.print(largestarea(arr));
+
+    }
+ //--------------------------------------------------------------
+   public static int largestarea(int[] a){
+
+    int n=a.length;
+     int left[]=new int[n];
+     int right[]=new int[n];   
+
+     Stack<Integer> s=new Stack<>();
+
+        s.push(0);
+       left[0]=-1;
+
+     for(int i=1;i<n;i++)
+       {
+           while(!s.isEmpty() && a[s.peek()] >= a[i])
+           {
+              s.pop();
+           }
+
+           left[i]=(s.isEmpty() ? -1 : s.peek()) ;
+
+           s.push(i);
+       }
+     s.clear();
+
+       s.push(n-1);
+       right[n-1]=n;
+
+       for(int i=n-2;i>=0;i--)
+       {
+           while(!s.isEmpty() && a[s.peek()] >= a[i])
+           {
+              s.pop();
+           }
+
+           right[i]=(s.isEmpty() ? n : s.peek()) ;
+
+           s.push(i);
+       }
+
+    
+        int max_area=0;
+    for(int i=0;i<n;i++)
+        {
+            int width=right[i]-left[i]-1;    
+
+             max_area=Math.max(max_area,a[i]*width);          //MAXIMUM AREA
+        }
+        return max_area;  
+
+
+   }
+ //------------------------------------------------------------
+
+}
