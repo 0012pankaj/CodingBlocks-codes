@@ -1,0 +1,75 @@
+import java.util.*;
+public class Main {
+
+    
+    public static void main(String args[]) {
+        
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int q=sc.nextInt();
+        
+        Stack<Integer> stk= new Stack<>();
+        for(int i=0;i<n;i++){
+            stk.push(sc.nextInt());
+        }
+
+        pwc(stk,q);
+      
+     }
+
+     public static void pwc(Stack<Integer> stk,int q){
+        
+         Stack<Integer> ast1=new Stack<Integer>();
+         Stack<Integer> bst2=new Stack<Integer>();
+     
+        ArrayList<Integer> primelist=new ArrayList<Integer>();
+        giveprime(primelist);
+
+
+        for(int i=1;i<=q;i++){
+            int p=primelist.get(i-1);
+            while(!stk.isEmpty()){
+                int si=stk.pop();
+
+                if(si%p==0){
+                    bst2.push(si);
+                }else{
+                    ast1.push(si);
+                }
+            }
+            while(!bst2.isEmpty()){
+                System.out.println(bst2.pop());
+            }
+            stk=ast1;
+            ast1=new Stack<>();
+
+            
+        }
+        while(!stk.isEmpty()){
+               System.out.println(stk.pop());
+        }
+     
+     
+     
+     }
+
+     public static void giveprime(ArrayList<Integer> primelist){
+         boolean[] p=new boolean[100001];
+         p[0]=true;
+         p[1]=true;
+         for(int i=2;i*i<=100000;i++){
+             if(p[i]==false){
+                 primelist.add(i);
+                 for(int m=2;m*i<=100000;m++){
+                     p[i*m]=true;
+                 }
+             }
+         }
+
+         for(int i=2;i<=100000;i++){
+             if(!p[i]){
+                 primelist.add(i);
+             }
+         }
+     }
+}
