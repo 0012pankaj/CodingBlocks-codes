@@ -1,0 +1,25 @@
+import java.util.*;
+public class Main {
+    static String table[] = { " ", ".+@$", "abc", "def", "ghi", "jkl" , "mno", "pqrs" , "tuv", "wxyz" };
+    public static void main(String args[]) {
+     
+  Scanner sc=new Scanner(System.in);
+   String dig=sc.next();
+   printcode(dig,"");
+
+    }
+
+    public static void printcode(String dig,String ans){
+        if(dig.length()==0){
+            System.out.println(ans);
+            return;
+        }
+
+        int d=dig.charAt(0)-'0';
+        String letter=table[d];
+
+        for(int i=0;i<letter.length();i++){
+            printcode(dig.substring(1),ans+letter.charAt(i));
+        }
+    }
+}
