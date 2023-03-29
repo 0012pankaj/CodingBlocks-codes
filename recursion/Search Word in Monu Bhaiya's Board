@@ -1,0 +1,78 @@
+import java.util.*;
+public class Main {
+    public static void main (String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int m=sc.nextInt();
+        
+        int k=sc.nextInt();
+    
+        char[][] board=new char[n][m];
+        for(int i=0;i<n;i++){
+            String s=sc.next();
+            for(int j=0;j<s.length();j++){
+                board[i][j]=s.charAt(j);
+            }
+        }
+
+        String str[]=new String[k];
+        for(int i=0;i<k;i++){
+           str[i]=sc.next();
+        }
+
+        ArrayList<String> l=new ArrayList<>();
+    
+       l=findWords(board,str); 
+       Collections.sort(l);
+       for(int i=0;i<l.size();i++){
+           System.out.print(l.get(i)+" ");
+       }
+    }
+
+    public static ArrayList<String> findWords(char[][] board, String[] words) {
+    int row=board.length;
+    int col=board[0].length;
+    HashSet<String> list=new HashSet<String>();
+
+      for(int i=0;i<row;i++)
+      { for(int j=0;j<col;j++){  
+           for(String str: words){
+              if(board[i][j]==str.charAt(0) && findword(board,i,j,str,0,new boolean[row][col] ) ){
+                  list.add(str);
+              }
+           }
+         
+        }
+      }
+      return new ArrayList<>(list);
+        
+    }        //----------------------------------
+
+    public static boolean findword(char[][] board,int rr,int cc, String word,int w_idx,boolean[][] bool)
+    {   if(w_idx == word.length() )
+         return true;
+
+        if(cc<0 || cc >= board[0].length || rr<0 || rr >= board.length || bool[rr][cc] || board[rr][cc] != word.charAt(w_idx) ){
+            return false;
+        }
+        
+        int r[]={1,-1,0,0}; // here they give 4 direvtion ,if the include dignals directions also then add r={-1,1,1,-1} 
+        int c[]={0,0,-1,1};                                                    // tatal become 8 direction  c={1,-1,1,-1} 
+        
+        bool[rr][cc]=true;
+        for(int i=0;i<r.length;i++)
+        {
+            boolean ans=findword(board,rr+r[i],cc+c[i],word,w_idx+1,bool); 
+            if(ans)
+            {
+                return true;
+            }
+        }
+        bool[rr][cc]=false; //back track
+
+
+        return false;
+
+    }
+
+}
