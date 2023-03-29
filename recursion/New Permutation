@@ -1,0 +1,36 @@
+import java.util.*;
+public class Main {
+    public static void main (String args[]) {
+        Scanner sc=new Scanner(System.in);
+        String s=sc.next();
+
+        ArrayList<String> l=new ArrayList<>();
+        per(s,0,"",l);
+        for(int i=0;i<l.size();i++){
+            System.out.print(l.get(i)+" ");
+        }     
+
+    }
+    public static void per(String s,int i,String ans,ArrayList<String> l){
+       if(ans.length()==s.length()){
+           l.add(ans);
+           return;
+       }
+       if(i>s.length()){
+           return;
+       }
+
+        char c=s.charAt(i);
+        if('a' <= c && c <= 'z'){
+              per(s,i+1,ans+c,l);
+              per(s,i+1,ans+Character.toUpperCase(c),l);
+        }else  if('A' <= c && c <= 'Z'){
+              per(s,i+1,ans+c,l);
+              per(s,i+1,ans+Character.toLowerCase(c),l);
+              
+        }else{
+             per(s,i+1,ans+c,l);
+        }
+
+    }
+}
