@@ -1,0 +1,68 @@
+import java.util.*;
+class minstack{
+    Stack<Integer> stack;
+    Stack<Integer> mstack;
+
+    public minstack(){
+        stack=new Stack<Integer>();
+        mstack=new Stack<Integer>();
+    }
+
+    public void push(int x){
+        stack.push(x);
+        if(mstack.isEmpty() || x<= mstack.peek()){
+            mstack.push(x);
+        }else{
+            mstack.push(mstack.peek());
+        }
+    }
+
+    public void pop(){
+        stack.pop();
+        mstack.pop();
+    }
+
+    public int top(){
+        return stack.peek();
+    }
+
+    public int getMin(){
+         if (mstack.isEmpty()){
+             throw new RuntimeException("stack is empty");
+         }
+        return mstack.peek();
+    }
+
+}
+
+public class Main {
+    public static void main (String args[]) {
+     
+     Scanner sc=new Scanner(System.in);
+     minstack stk=new minstack();
+     int n=sc.nextInt();
+	 String[] s=new String[n];
+	 for(int i=0;i<n;i++){
+		 s[i]=sc.next();
+	 }
+
+     for(int i=0;i<n;i++){
+         String op=s[i];
+
+         if(op.equals("push")){
+             if(sc.hasNextInt()){
+            int e=sc.nextInt();
+             stk.push(e);
+             }
+           
+         }
+         else if(op.equals("pop")){
+             stk.pop();
+         }else if(op.equals("top")){
+            System.out.print(stk.top()+" ");
+         }else if(op.equals("getMin")){
+             System.out.print(stk.getMin()+" ");
+         }
+     }
+    }
+}
