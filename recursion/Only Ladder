@@ -1,0 +1,59 @@
+import java.util.*;
+public class Main {
+	static int res=0;
+    public static void main(String args[]) {
+        // Your Code Here
+		 Scanner sc=new Scanner(System.in);
+		 int n=sc.nextInt();
+		 List<Integer> list=ps(n-1);
+		 onladd(list,n,"0 ",0,0);
+		 System.out.println();
+		 	 System.out.println(res);
+
+    }
+	public static List<Integer> ps(int s){
+		boolean[] a =new boolean[s+1];
+		a[0]=a[1]=true;
+		for(int i=2;i*i<a.length;i++){
+			for(int j=i*i ;j*i<=s;j++){
+				a[j*i]=true;
+			}
+		}
+      List<Integer> l=new ArrayList<>();
+		for(int i=2;i<a.length;i++){
+			if(a[i]==false){
+				l.add(i);
+			}
+		}
+
+		return l;
+	}
+
+
+	public static void onladd(List<Integer> l,int s,String st,int c,int p){
+
+		if(c>s) return;
+
+		if(c==s-1){
+			res++;
+			System.out.print(st+"END , ");
+			return;
+		}
+
+		if(c==s){
+			res++;
+			System.out.print(st.substring(0,st.length()-2)+"END , ");
+			return;
+		}
+
+		if(p < l.size()/2 && l.get(p)==c){
+			p++;
+			onladd(l,s,st+l.get(l.size()-p)+" ",l.get(l.size()-p),p);
+          return;		
+		}
+
+		for(int i=1;i<=6;i++){
+			onladd(l,s,st+(c+i)+" ",c+i,p);
+		}
+	}
+}
