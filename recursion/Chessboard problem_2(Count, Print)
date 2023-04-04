@@ -1,0 +1,89 @@
+import java.util.*;
+public class Main {
+	static int num=0;
+    public static void main(String args[]) {
+        // Your Code Here
+		Scanner sc=new Scanner(System.in);
+		int s=sc.nextInt();
+		int[][] arr=new int[s][s];
+		int c=1;
+		int flg=0;
+		for(int i=0;i<s;i++){
+			for(int j=0;j<s;j++){
+				if(ISp(c) && flg%2==0){
+					arr[i][j]=-1;
+					flg++;
+				}else if(ISp(c) && flg%2 !=0 ){
+					arr[i][j]=1;
+					flg++;
+				}
+				c++;
+			}
+		}
+		chessbord2(0,0,s,s,"",arr);
+		System.out.println("\n"+num);
+    }
+	public static boolean ISp(int s){
+		int x=0;
+		for(int i=1;i<=s;i++){
+			if(s%i==0){
+				x++;
+			}
+		}
+		if(x==2) return true;
+
+    return false;
+	}
+
+	public static void chessbord2(int row,int col,int n,int nc,String ans,int[][]  arr){
+
+    if(row==n-1 && col==nc-1){
+		System.out.print(ans+"{"+row+"-"+col+"}"+" ");
+		num++;
+		return;
+	}
+
+	if(row>=n || col >=n) return;
+
+	if(arr[row][col]==1){
+		chessbord2(n-1,nc-1,n,nc,ans+"{"+row+"-"+col
+		+"}P",arr);
+	}
+     
+	 if((row+2)<n && (col+1)<nc && arr[row+2][col+1] !=-1){
+   chessbord2(row+2,col+1,n,nc,ans+"{"+row+"-"+col
+		+"}K",arr);
+	 }
+
+	  if((row+1)<n && (col+2)<nc && arr[row+1][col+2] !=-1){
+   chessbord2(row+1,col+2,n,nc,ans+"{"+row+"-"+col
+		+"}K",arr);
+	 }
+
+	 if(row==0 || col==0 || (row==n-1) || (col== n-1)){
+     
+	 for(int m=1;m<nc;m++){
+		 if((row < n) && (col+m)<nc && arr[row][col+m] != -1)
+		       chessbord2(row,col+m,n,nc,ans+"{"+row+"-"+col
+		+"}R",arr);
+	     }
+
+		 for(int m=1;m<n;m++){
+		 if((row+m < n) && (col)<nc && arr[row+m][col] != -1)
+		       chessbord2(row+m,col,n,nc,ans+"{"+row+"-"+col
+		+"}R",arr);
+	     }
+
+	 }
+     
+	 if((row==col ) || (row+col == n-1)){
+           for(int m=1;m<n;m++){
+              if((row+m)<n && (col+m)<nc && arr[row+m][col+m] != -1)
+			  chessbord2(row+m,col+m,n,nc,ans+"{"+row+"-"+col
+		+"}B",arr);
+			   }
+	 }
+
+
+	}
+}
