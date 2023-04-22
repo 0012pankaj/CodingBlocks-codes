@@ -56,3 +56,52 @@ public class Main {
 
     }
 }
+_____________________________________________
+
+class Solution {   // using stack  Approch 1 using stack    Tc-->O(n ) Sp-->O(n)
+    public int longestValidParentheses(String s) {
+
+        Stack<Integer> st=   new  Stack<Integer>();
+        st.push(-1);
+        
+        int max=0;
+        for(int i=0;i<s.length();i++)
+        {
+            if(s.charAt(i) =='('){
+                st.push(i);
+            }
+            else
+            {
+                st.pop();
+
+                  //if condition
+                if(st.isEmpty()){
+                    st.push(i);
+                }else
+                {
+                  //calculate len
+                   int len=i-st.peek();
+                  max=Math.max(max,len);
+
+                }
+            }
+        }
+       
+       return max;
+    }
+}
+/*Approch 1:- #Algo made easy
+1.create a stack & push -1.
+2.run a loop 0-n
+3 if(curent character-->'(') st.push(index of current)
+4.else  (it is ')')so,
+    4.1  pop(); as it made pair ( )
+    4.2 if condition 
+    if (stack is empty )
+        push(curent index)
+    else 
+        calculate length by
+        [current index - stack top (index) ]
+        and find maximum on each step
+    */    
+
