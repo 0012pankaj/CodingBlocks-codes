@@ -99,25 +99,3 @@ public class Main {
       return true;
     }
 }
-//------------------------------------------monu bhia ispossible code
-public static boolean isitpossilbe(int[] pages, int mid, int nos) {
-	
-		int student = 1;
-		int read_page = 0;
-		int i = 0;
-		while (i < pages.length) {
-			if (read_page + pages[i] <= mid) {
-				read_page += pages[i];
-				i++;
-			} else {
-				student++;
-				read_page = 0;
-			}
-
-			if (student > nos) {
-				return false;
-			}
-		}
-
-		return true;
-	}
