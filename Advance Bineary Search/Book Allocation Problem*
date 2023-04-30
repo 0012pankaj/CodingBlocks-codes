@@ -30,6 +30,11 @@ Explanation
 Print max(113, 90)
 ______________________________________________________________________________________________________________
 
+_____________________________________________________________________________________________________________________________---
+intution-->whenver you have to do CONTIGUES allocation to certain MEMEBERS,and we have to MINIMIZE/MAXIMIZE certain value
+    APPLY BINEARY SEARCH
+    _____________________________________________________________________
+           
 
 
 import java.util.*;
