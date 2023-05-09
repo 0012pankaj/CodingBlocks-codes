@@ -1,0 +1,19 @@
+public static void giveprime(ArrayList<Integer> primelist){
+         boolean[] p=new boolean[100001];
+         p[0]=true;
+         p[1]=true;
+         for(int i=2;i*i<=100000;i++){
+             if(p[i]==false){
+                 primelist.add(i);
+                 for(int m=2;m*i<=100000;m++){
+                     p[i*m]=true;
+                 }
+             }
+         }
+
+         for(int i=2;i<=100000;i++){
+             if(!p[i]){
+                 primelist.add(i);
+             }
+         }
+     }
