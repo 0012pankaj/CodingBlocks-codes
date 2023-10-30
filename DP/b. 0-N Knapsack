@@ -1,0 +1,44 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String args[]) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int cap = sc.nextInt();
+
+        int w[] = new int[n];
+        int v[] = new int[n];
+
+        for (int i = 0; i < n; i++) w[i] = sc.nextInt();
+        for (int i = 0; i < n; i++) v[i] = sc.nextInt();
+
+        int dp[][] = new int[n + 1][cap + 1];
+        for (int[] r : dp) {
+            Arrays.fill(r, -1);
+        }
+
+        int ans = solve(w, v, 0, cap, dp);
+        System.out.println(ans);
+    }
+
+    public static int solve(int[] w, int v[], int index, int cap, int[][] dp) {
+        if (index == w.length || cap == 0) {
+            return 0;
+        }
+
+        if (dp[index][cap] != -1) {
+            return dp[index][cap];
+        }
+
+        int inc = 0, incWithoutMove = 0;
+
+        if (w[index] <= cap) {
+            inc = v[index] + solve(w, v, index + 1, cap - w[index], dp);  // Including the item and moving to the next item
+            incWithoutMove = v[index] + solve(w, v, index, cap - w[index], dp); // Including the item but not moving to the next item (as the same item can be considered again)
+        }
+
+        int exc = solve(w, v, index + 1, cap, dp);  // Excluding the item
+
+        return dp[index][cap] = Math.max(Math.max(inc, incWithoutMove), exc);
+    }
+}
