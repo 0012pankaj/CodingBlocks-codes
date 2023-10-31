@@ -1,0 +1,18 @@
+import java.util.*;
+public class Main {
+      public static void main(String args[]) {
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        HashMap<Integer,Long> m_dp=new HashMap<>();
+        System.out.println(callfun(n,m_dp));
+    }
+    static long callfun(int n,Map<Integer,Long> m_dp){
+        if(n==0)return 0;
+        if(m_dp.containsKey(n))return m_dp.get(n);
+
+        long ans=Math.max(n,callfun(n/2,m_dp)+callfun(n/3,m_dp)+callfun(n/4,m_dp));
+        m_dp.put(n,ans);
+        return ans;
+    }
+
+}
