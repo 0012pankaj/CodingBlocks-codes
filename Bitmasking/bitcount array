@@ -1,0 +1,32 @@
+import java.util.*;
+public class Main {
+    public static void main (String args[]) {
+         // Array to store bit counts
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] bitCounts = new int[n+1];
+
+        for (int i = 1; i <=n; i++) {
+            bitCounts[i] = bitCounts[i >> 1] + (i & 1);
+        }
+
+        // Printing bit counts for the first few numbers
+        for (int i = 0; i <= n; i++) {
+            System.out.print(bitCounts[i]+" ");
+        }
+
+
+    }
+}
+/*logic:--> if even number count bit of n = number of bit in n/2 th number  |  bitCounts[i >> 1] >> = /2
+            if odd number count bit of n = number of bit in n/2 th number +1 | (i & 1);i if odd
+
+Calculating Bit Count: For each iteration, bitCounts[i] is calculated based on the following logic:
+i >> 1: This bitwise operation shifts the binary representation of i to the right by one position,
+effectively dividing i by 2. This operation helps in accessing the number of set bits for the previous
+number (half of i).
+(i & 1): This bitwise AND operation (&) with 1 extracts the least significant bit (LSB) of i, 
+which indicates whether i is even or odd. If the LSB is 1, then i is odd, otherwise it's even.
+Adding Bit Counts: The calculated bit count for the previous number (half of i) is obtained from 
+bitCounts[i >> 1], and to this count, the LSB of i (whether it's 1 or 0) is added. This operation 
+determines the total number of set bits in the binary representation of i. */
